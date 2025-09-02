@@ -7,7 +7,7 @@ export default function AdminOrUser() {
       <h1>Admin or User</h1>
       <button onClick={()=>{navigate("/showRiddles")}}>start game</button>
       <button onClick={()=>{navigate("/leaderboard")}} >Leaderboard</button>
-      <button onClick={()=>{navigate("/create")}} >CRUD</button>
+      <button onClick={()=>{navigate("/crud")}} >CRUD</button>
 
       {/* פה לפי האישורים שלו יופיעו כפתורים שמובילים ל CRUD */}
     </div>
