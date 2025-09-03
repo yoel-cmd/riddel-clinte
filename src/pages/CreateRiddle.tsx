@@ -1,5 +1,4 @@
 import { useRef } from "react";
-import { insertRiddleToLS } from "../util/LocalStorage";
 
 export default function CreateRiddle() {
   const nameRef = useRef<HTMLInputElement>(null);
