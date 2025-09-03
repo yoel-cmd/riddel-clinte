@@ -1,7 +1,7 @@
 import { useRef } from "react";
 // import { insertTokenToLS } from "../util/LocalStorage.ts";
 import { useNavigate } from "react-router";
-import { Auth } from "../util/LocalStorage.ts";
+import { Auth } from "../util/auth.ts";
 
 
 export default function LoginOrSignUp() {
