@@ -22,44 +22,26 @@ export default function LoginOrSignUp() {
             userNameRef.current?.value,
             passwordRef.current?.value
           );
-          if (role.role === "admin" || "user") {
-            navigate("/adminoruser");
-          }
+          if (role?.role === "admin" || role?.role === "user") {
+          navigate("/adminoruser");
+        }
+
         }}
       >
         Sign Up
       </button>
 
-      {/* <button
+      <button
         onClick={async (e) => {e.preventDefault();
          const role=await Auth("login","Login successful",userNameRef.current?.value,passwordRef.current?.value)
-          if(role.role==="admin"||"user"){
-          navigate("/adminoruser")
+         if (role?.role === "admin" || role?.role === "user") {
+          navigate("/adminoruser");
         }
+
         }}>Login
-      </button> */}
-
-      <button
-        onClick={async (e) => {
-          e.preventDefault();
-          const role = await Auth(
-            "login",
-            "Login successful",
-            userNameRef.current?.value,
-            passwordRef.current?.value
-          );
-          console.log("👤 Role שחזר מ-Auth:", role);
-
-          if (role?.role === "admin" || role?.role === "user") {
-            console.log("➡️ מנווט ל- /adminoruser");
-            navigate("/adminoruser");
-          } else {
-            console.log("⛔ לא נמצא role מתאים");
-          }
-        }}
-      >
-        Login
       </button>
+
+      
     </div>
   );
 }
