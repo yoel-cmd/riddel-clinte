@@ -3,7 +3,6 @@ import { useRef } from "react";
 import { useNavigate } from "react-router";
 import { Auth } from "../util/Auth.ts";
 
-
 export default function LoginOrSignUp() {
   const navigate = useNavigate();
   const userNameRef = useRef<HTMLInputElement>(null);
@@ -15,21 +14,51 @@ export default function LoginOrSignUp() {
       <input type="password" placeholder="enter password" ref={passwordRef} />
 
       <button
-        onClick={async (e) => {e.preventDefault();
-        const role=await Auth("siging","User created",userNameRef.current?.value,passwordRef.current?.value)
-        if(role.role==="admin"||"user"){
-          navigate("/adminoruser")
-        }
-        }}>Sign Up
+        onClick={async (e) => {
+          e.preventDefault();
+          const role = await Auth(
+            "siging",
+            "User created",
+            userNameRef.current?.value,
+            passwordRef.current?.value
+          );
+          if (role.role === "admin" || "user") {
+            navigate("/adminoruser");
+          }
+        }}
+      >
+        Sign Up
       </button>
 
-      <button
+      {/* <button
         onClick={async (e) => {e.preventDefault();
          const role=await Auth("login","Login successful",userNameRef.current?.value,passwordRef.current?.value)
           if(role.role==="admin"||"user"){
           navigate("/adminoruser")
         }
         }}>Login
+      </button> */}
+
+      <button
+        onClick={async (e) => {
+          e.preventDefault();
+          const role = await Auth(
+            "login",
+            "Login successful",
+            userNameRef.current?.value,
+            passwordRef.current?.value
+          );
+          console.log("👤 Role שחזר מ-Auth:", role);
+
+          if (role?.role === "admin" || role?.role === "user") {
+            console.log("➡️ מנווט ל- /adminoruser");
+            navigate("/adminoruser");
+          } else {
+            console.log("⛔ לא נמצא role מתאים");
+          }
+        }}
+      >
+        Login
       </button>
     </div>
   );
