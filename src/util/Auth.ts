@@ -10,6 +10,8 @@ export async function Auth(path:string,successMsg:string ,name?:string ,password
   if (response.ok) {
     const val = await response.json();
     insertTokenToLS("token", val);
+    console.log(val);
+    
     alert(successMsg);
     // כאן אני מחזיר בסוף הפונקצייה את התפקיד שיש בתוך הטוקן
     return JSON.parse(atob(val.split('.')[1]));
