@@ -17,11 +17,11 @@ export default function ShowRiddles() {
     fatchData();
   }, []);
 
-  // useEffect(() => {
-  //   setInterval(() => {
-  //     setTimer((prev: number) => prev + 1);
-  //   }, 1000);
-  // },[]);
+  useEffect(() => {
+    setInterval(() => {
+      setTimer((prev: number) => prev + 1);
+    }, 1000);
+  },[]);
 
   //כאן אני עושה אפקט שמה שהוא עושה זה כל פעם שמשתנה המונה הוא עובר דרך פה ובודק אם נגמרו החידות
 
