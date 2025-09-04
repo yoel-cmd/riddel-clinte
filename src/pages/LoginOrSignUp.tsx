@@ -3,7 +3,6 @@ import { useRef } from "react";
 import { useNavigate } from "react-router";
 import { Auth } from "../util/Auth.ts";
 
-
 export default function LoginOrSignUp() {
   const navigate = useNavigate();
   const userNameRef = useRef<HTMLInputElement>(null);
@@ -15,22 +14,34 @@ export default function LoginOrSignUp() {
       <input type="password" placeholder="enter password" ref={passwordRef} />
 
       <button
-        onClick={async (e) => {e.preventDefault();
-        const role=await Auth("siging","User created",userNameRef.current?.value,passwordRef.current?.value)
-        if(role.role==="admin"||"user"){
-          navigate("/adminoruser")
+        onClick={async (e) => {
+          e.preventDefault();
+          const role = await Auth(
+            "siging",
+            "User created",
+            userNameRef.current?.value,
+            passwordRef.current?.value
+          );
+          if (role?.role === "admin" || role?.role === "user") {
+          navigate("/adminoruser");
         }
-        }}>Sign Up
+
+        }}
+      >
+        Sign Up
       </button>
 
       <button
         onClick={async (e) => {e.preventDefault();
          const role=await Auth("login","Login successful",userNameRef.current?.value,passwordRef.current?.value)
-          if(role.role==="admin"||"user"){
-          navigate("/adminoruser")
+         if (role?.role === "admin" || role?.role === "user") {
+          navigate("/adminoruser");
         }
+
         }}>Login
       </button>
+
+      
     </div>
   );
 }

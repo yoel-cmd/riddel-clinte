@@ -1,9 +1,10 @@
 
-export function insertRiddleToLS(key:string,obj: object) {
-  const arrLocal=loadLS(key)
-  arrLocal.push(obj)
-  localStorage.setItem(key, JSON.stringify(arrLocal));
-}
+//הדרך לטעון חידות מתוך הLS
+// export function insertRiddleToLS(key:string,obj: object) {
+//   const arrLocal=loadLS(key)
+//   arrLocal.push(obj)
+//   localStorage.setItem(key, JSON.stringify(arrLocal));
+// }
 
 export function loadLS(key:string) {
   const token = localStorage.getItem(key);

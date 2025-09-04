@@ -21,3 +21,5 @@ export async function Auth(path:string,successMsg:string ,name?:string ,password
   }
 
 }
+
+
