@@ -10,6 +10,7 @@ import CreateRiddle from "./pages/CreateRiddle";
 import AdminOrUser from "./pages/AdminOrUser";
 import LoginOrSignUp from "./pages/LoginOrSignUp";
 import CRUD from "./pages/CRUD";
+import AllRiddle from "./pages/ReadRiddles";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/finish" element={<FinishGame />} />
           <Route path="/leaderboard" element={<Leaderboard />} />
           <Route path="/showRiddles" element={<ShowRiddles />} />
+          <Route path="/read" element={<AllRiddle />} />
           <Route path="/adminoruser" element={<AdminOrUser />} />
           <Route path="/login" element={<LoginOrSignUp />} />
           <Route path="/crud" element={<CRUD />} />
