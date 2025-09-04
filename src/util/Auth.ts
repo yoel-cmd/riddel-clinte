@@ -1,6 +1,6 @@
 import {insertTokenToLS} from "./LocalStorage.ts"
 export async function Auth(path:string,successMsg:string ,name?:string ,password?:string){
-  const response = await fetch(`http://localhost:3000/${path}`, {
+  const response = await fetch(`https://ridlle-game-server.onrender.com/${path}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
