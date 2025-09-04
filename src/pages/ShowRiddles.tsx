@@ -1,35 +1,54 @@
-import { loadLS } from "../util/LocalStorage.ts";
 import { useNavigate } from "react-router";
+import { useEffect, useState } from "react";
+import { readRiddleServer } from "../util/CRUD.ts";
+import Riddle from "../components/Riddle.tsx";
 
 export default function ShowRiddles() {
   const navigate = useNavigate();
-  const riddle = loadLS("riddles");
+  const [riddle, setRiddle] = useState([]);
+  const [counter, setCounter] = useState(0);
+  const [timer, setTimer] = useState(0);
 
-  return (
-    <div>
-      <p>{JSON.stringify(riddle)}</p>
-      <h1> Riddles </h1>
-      <form action="">
-        <p>riddle: 5+5</p>
+  useEffect(() => {
+    async function fatchData() {
+      const data = await readRiddleServer();
+      setRiddle(data);
+    }
+    fatchData();
+  }, []);
 
-        <input type="text" placeholder="enter your answer" />
-        <button
-          type="submit"
-          onClick={(e) => {
-            e.preventDefault();
-            alert("wrong answer");
-          }}
-        >
-          submit
-        </button>
-      </form>
-      <button
-        onClick={() => {
-          navigate("/finish");
-        }}
-      >
-        finish game
-      </button>
-    </div>
-  );
+  // useEffect(() => {
+  //   setInterval(() => {
+  //     setTimer((prev: number) => prev + 1);
+  //   }, 1000);
+  // },[]);
+
+  //כאן אני עושה אפקט שמה שהוא עושה זה כל פעם שמשתנה המונה הוא עובר דרך פה ובודק אם נגמרו החידות
+
+  // useEffect(() => {//חייב פה לשים בפנים כי אי אפשר לעשות  אסינק
+  //   if (counter > riddle.length) {
+  //     navigate("/finish");
+  //   }
+  // }, [counter]);
+
+  // אם יש לי בדיקות שרק אם מתקיימות אני מציג  מסויימים
+  // if(true){
+  //   return <p>{counter<3 ?3:4}</p>
+  // } else {
+  //   return <h1></h1>
+  // };
+  console.log("counter is", counter);
+  console.log("riddle.length:", riddle.length);
+
+  if (counter >= riddle.length) {
+    navigate("/finish");
+    return
+  } else {
+    return (
+      <div>
+        <h4>{timer}</h4>
+        {riddle && <Riddle riddle={riddle[counter]} setcount={setCounter} />}
+      </div>
+    );
+  }
 }
