@@ -21,7 +21,7 @@ export default function CreateRiddle() {
                 formData.forEach((value, key) => {
                     riddle[key] = value;  
                 });
-                fetch("http://localhost:3000/create-ridlle", {
+                fetch("https://ridlle-game-server.onrender.com/create-ridlle", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",

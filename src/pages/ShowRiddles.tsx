@@ -7,7 +7,7 @@ export default function ShowRiddles() {
   const navigate = useNavigate();
   const [riddle, setRiddle] = useState([]);
   const [counter, setCounter] = useState(0);
-  const [timer, setTimer] = useState(0);
+  // const [timer, setTimer] = useState(0);
 
   useEffect(() => {
     async function fatchData() {
@@ -17,11 +17,11 @@ export default function ShowRiddles() {
     fatchData();
   }, []);
 
-  useEffect(() => {
-    setInterval(() => {
-      setTimer((prev: number) => prev + 1);
-    }, 1000);
-  },[]);
+  // useEffect(() => {
+  //   setInterval(() => {
+  //     setTimer((prev: number) => prev + 1);
+  //   }, 1000);
+  // },[]);
 
   //כאן אני עושה אפקט שמה שהוא עושה זה כל פעם שמשתנה המונה הוא עובר דרך פה ובודק אם נגמרו החידות
 
@@ -46,7 +46,7 @@ export default function ShowRiddles() {
   } else {
     return (
       <div>
-        <h4>{timer}</h4>
+        {/* <h4>{timer}</h4> */}
         {riddle && <Riddle riddle={riddle[counter]} setcount={setCounter} />}
       </div>
     );

@@ -1,5 +1,5 @@
 export function createRiddle(riddle: Record<string, any>) {
-    fetch("http://localhost:3000/create-ridlle", {
+    fetch("https://ridlle-game-server.onrender.com/create-ridlle", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -10,7 +10,7 @@ export function createRiddle(riddle: Record<string, any>) {
 
 export async function readRiddleServer() {
     try { 
-        const res = await fetch('http://localhost:3000/readRiddle')
+        const res = await fetch('https://ridlle-game-server.onrender.com/readRiddle')
         const data = await res.json();  
         return data
     }
