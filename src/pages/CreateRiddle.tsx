@@ -27,7 +27,7 @@ export default function CreateRiddle() {
           if (result) {
             alert("Riddle Created");
           } else {
-            alert("❌ Failed to create riddle");
+            alert("Failed to create riddle");
           }
 
         }}>
