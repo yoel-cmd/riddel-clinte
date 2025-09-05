@@ -1,69 +1,192 @@
-# React + TypeScript + Vite
+🎲 Riddle Game App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A riddle game app with support for Users, Admins, and Guests.
 
-Currently, two official plugins are available:
+🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Authentication with JWT
 
-## Expanding the ESLint configuration
+Role-based access control:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+User → can play, create riddles, and read riddles
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Admin → full CRUD (currently only Create + Read implemented)
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+Guest → can view riddles via public API only
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+CRUD on riddles:
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+✅ Create
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+✅ Read
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+❌ Update (not yet)
+
+❌ Delete (not yet)
+
+Leaderboard for players
+
+🔑 Admin Test Account
+
+Username: inon
+
+Password: 1234
+
+📂 Project Structure
+
+Backend: Node.js + Express, MongoDB, JWT, role-based middleware
+
+Frontend: React (Vite), React Router, LocalStorage
+
+Main components:
+
+LoginOrSignUp → Sign up / login
+
+AdminOrUser → Main screen after login
+
+ShowRiddles → Play riddles
+
+AllRiddle → CRUD → Read riddles
+
+CreateRiddle → CRUD → Create riddles
+
+GuestPage → Guest mode, public riddles
+
+⚙️ Endpoints
+Public
+
+GET /readRiddlePublic → read riddles (no token required)
+
+Protected (User/Admin)
+
+GET /readRiddle
+
+POST /create-ridlle
+
+PUT /update-riddle/:id (Admin only, not yet implemented)
+
+DELETE /delete-riddle/:id (Admin only, not yet implemented)
+
+Auth
+
+POST /siging → register (role = user by default)
+
+POST /login → login
+
+🔄 Flow (Diagram)
+flowchart TD
+  A[Welcome Page] -->|Login/SignUp| B[LoginOrSignUp]
+  A -->|Guest Mode| C[GuestPage]
+  B -->|User/Admin Token| D[AdminOrUser]
+
+  D -->|Start Game| E[ShowRiddles]
+  D -->|Leaderboard| F[Leaderboard]
+  D -->|CRUD (Admin only)| G[CRUD Page]
+
+  C -->|Public API| H[(readRiddlePublic)]
+  E -->|Protected API| I[(readRiddle)]
+  G -->|Create/Read| J[(CRUD API)]
+
+---------------------------------------------------------------------------------------------------------------------------
+
+📘 README (עברית)
+🎲 אפליקציית משחק חידות
+
+אפליקציית חידות עם תמיכה ב־משתמשים רגילים (User), מנהלים (Admin) ו־אורחים (Guest).
+
+🚀 פיצ’רים
+
+אימות עם JWT
+
+הרשאות לפי תפקיד:
+
+User → יכול לשחק, ליצור חידות, לקרוא חידות
+
+Admin → גישה מלאה ל־CRUD (כרגע רק יצירה וקריאה עובדות)
+
+Guest → יכול לקרוא חידות בלבד דרך מסלול ציבורי
+
+CRUD על חידות:
+
+✅ יצירה
+
+✅ קריאה
+
+❌ עדכון (עוד לא)
+
+❌ מחיקה (עוד לא)
+
+טבלת שיאים לשחקנים
+
+🔑 חשבון אדמין לבדיקה
+
+שם משתמש: inon
+
+סיסמה: 1234
+
+📂 מבנה הפרויקט
+
+שרת: Node.js + Express, MongoDB, JWT, Middleware להרשאות
+
+לקוח: React (Vite), React Router, LocalStorage
+
+קומפוננטות עיקריות:
+
+LoginOrSignUp → התחברות / הרשמה
+
+AdminOrUser → מסך ראשי אחרי התחברות
+
+ShowRiddles → משחק חידות
+
+AllRiddle → קריאת כל החידות (CRUD → R)
+
+CreateRiddle → יצירת חידה (CRUD → C)
+
+GuestPage → מצב אורח
+
+⚙️ נקודות קצה
+ציבורי
+
+GET /readRiddlePublic → קריאת חידות ללא טוקן
+
+מוגן (User / Admin)
+
+GET /readRiddle
+
+POST /create-ridlle
+
+PUT /update-riddle/:id (Admin בלבד, עדיין לא ממומש)
+
+DELETE /delete-riddle/:id (Admin בלבד, עדיין לא ממומש)
+
+אימות
+
+POST /siging → הרשמה (ברירת מחדל role=user)
+
+POST /login → כניסה
+
+🔄 תרשים זרימה
+flowchart TD
+  A[דף הבית] -->|כניסה/הרשמה| B[LoginOrSignUp]
+  A -->|מצב אורח| C[GuestPage]
+  B -->|User/Admin Token| D[AdminOrUser]
+
+  D -->|התחל משחק| E[ShowRiddles]
+  D -->|טבלת שיאים| F[Leaderboard]
+  D -->|CRUD (Admin בלבד)| G[CRUD Page]
+
+  C -->|API ציבורי| H[(readRiddlePublic)]
+  E -->|API מוגן| I[(readRiddle)]
+  G -->|יצירה/קריאה| J[(CRUD API)]
+
+📸 צילומי מסך
+
+דף בית
+
+לוגין / הרשמה
+
+AdminOrUser (עם הכפתורים)
+
+GuestPage
+
+CRUD (יצירה / קריאה)
