@@ -15,7 +15,7 @@ export default function AdminOrUser() {
       const payload = JSON.parse(atob(token.split(".")[1]));
       setRole(payload.role);
     } catch (err) {
-      console.error("❌ Failed to decode token:", err);
+      console.error("Failed to decode token:", err);
       navigate("/");
     }
   }, []);
