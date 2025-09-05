@@ -12,14 +12,11 @@ export default function ShowRiddles() {
   useEffect(() => {
   async function fatchData() {
     const data = await readRiddleServer();
-    console.log("📦 ShowRiddles -> data received:", data);
     setRiddle(data);
   }
   fatchData();
 }, []);
 
-console.log("📦 ShowRiddles -> riddle state:", riddle);
-console.log("📦 ShowRiddles -> counter:", counter);
 
 
     console.log("counter is", counter);
