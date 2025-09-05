@@ -13,7 +13,7 @@ export async function createRiddle(riddle: Record<string, any>) {
     if (!res.ok) throw new Error(`Server returned ${res.status}`);
     return await res.json();
   } catch (error) {
-    console.error("❌ err:", error);
+    console.error(" err:", error);
     return null;
   }
 }
@@ -32,7 +32,7 @@ export async function readRiddleServer() {
     if (!res.ok) throw new Error(`Server returned ${res.status}`);
     return await res.json();
   } catch (err) {
-    console.error("❌ err:", err);
+    console.error("err:", err);
     return [];
   }
 }
