@@ -21,7 +21,6 @@ export async function createRiddle(riddle: Record<string, any>) {
 export async function readRiddleServer() {
   try {
     const token = loadLS("token");
-    console.log("🎟️ readRiddleServer -> token from LS:", token);
 
     const headers = {
       "Content-Type": "application/json",
@@ -34,14 +33,12 @@ export async function readRiddleServer() {
       headers,
     });
 
-    console.log("📡 readRiddleServer -> response status:", res.status);
     const raw = await res.clone().text();
-    console.log("📡 readRiddleServer -> raw response text:", raw);
 
     if (!res.ok) throw new Error(`Server returned ${res.status}`);
     return await res.json();
   } catch (err) {
-    console.error("❌ readRiddleServer err:", err);
+    console.error(" readRiddleServer err:", err);
     return [];
   }
 }
